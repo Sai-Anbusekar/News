@@ -34,17 +34,25 @@ class NewsTableViewCell: UITableViewCell {
     
     func updateCell(with news: Article?) {
         
-        if  let remoteImageURL = URL(string: news?.urlToImage ?? "") {
-            AF.request(remoteImageURL).responseData { (response) in
-                if response.error == nil {
-                    print(response.result)
-                    if let data = response.data {
-                        viewModel?.dataSource?.articles[row ?? 0].Newsimage = data
-                        if let imageData = self.viewModel?.dataSource?.articles[self.row ?? 0].Newsimage {
-                            self.newsImage = UIImage(data: imageData)
+        if self.viewModel?.dataSource?.articles[self.row ?? 0].Newsimage == nil {
+            if  let remoteImageURL = URL(string: news?.urlToImage ?? "") {
+                AF.request(remoteImageURL).responseData { (response) in
+                    if response.error == nil {
+                        print(response.result)
+                        if let data = response.data {
+                            self.viewModel?.dataSource?.articles[self.row ?? 0].Newsimage = data
+                            if let imageData = self.viewModel?.dataSource?.articles[self.row ?? 0].Newsimage {
+                                self.newsImage = UIImage(data: imageData)
+                            }
+                            self.internalUpdate(article: news)
                         }
-                        self.internalUpdate(article: news)
                     }
+                }
+
+            } else  {
+                if let data = self.viewModel?.dataSource?.articles[self.row ?? 0].Newsimage {
+                    self.newsImage = UIImage(data: data)
+                    self.internalUpdate(article: news)
                 }
             }
 
