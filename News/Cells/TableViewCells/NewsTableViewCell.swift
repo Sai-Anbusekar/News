@@ -16,6 +16,8 @@ class NewsTableViewCell: UITableViewCell {
 
     static let identifierForCell = "NewsTableViewCell"
     var newsImage: UIImage?
+    var  viewModel: NewsViewModel?
+    var row: Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,7 +39,10 @@ class NewsTableViewCell: UITableViewCell {
                 if response.error == nil {
                     print(response.result)
                     if let data = response.data {
-                        self.newsImage = UIImage(data: data)
+                        viewModel?.dataSource?.articles[row ?? 0].Newsimage = data
+                        if let imageData = self.viewModel?.dataSource?.articles[self.row ?? 0].Newsimage {
+                            self.newsImage = UIImage(data: imageData)
+                        }
                         self.internalUpdate(article: news)
                     }
                 }
