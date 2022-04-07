@@ -7,8 +7,13 @@
 
 import UIKit
 
-class NewsGridViewController: UIViewController {
+class NewsGridViewController: NewsViewController {
 
+    var newsViewModelDetails: NewsViewModel = NewsViewModel(Movies: NewsListModel())
+
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,14 +21,48 @@ class NewsGridViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func customiseUI() {
+        super.customiseUI()
+        registerCells()
+        getNewsList()
     }
-    */
+   
+    private func getNewsList() {
+        
+        newsViewModelDetails.fetchMovies(page: 0, successBlock: { withResponse, successStatus in
+            self.newsViewModelDetails.dataSource = withResponse
+            self.collectionView.reloadData()
+        }, failureBlock: { withResponse, failureStatus in
+            
+        })
+    }
+    
+    private func registerCells() {
+        collectionView.register(UINib(nibName: "NewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: NewsCollectionViewCell.identifierForCell)
+    }
 
+}
+
+
+extension NewsGridViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        newsViewModelDetails.dataSource?.articles.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell: NewsCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewsCollectionViewCell", for: indexPath) as? NewsCollectionViewCell {
+            cell.updateCell(with: newsViewModelDetails.dataSource?.articles[indexPath.row] )
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        
+
+        return CGSize(width: self.collectionView.frame.width / 2 , height: self.collectionView.frame.width / 2);
+    }
+    
 }

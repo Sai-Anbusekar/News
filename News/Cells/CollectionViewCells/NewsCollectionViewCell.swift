@@ -1,42 +1,33 @@
 //
-//  NewsTableViewCell.swift
+//  NewsCollectionViewCell.swift
 //  News
 //
-//  Created by Anbusekar Murugesan on 05/04/2022.
+//  Created by Anbusekar Murugesan on 07/04/2022.
 //
 
 import UIKit
 import Alamofire
 
-class NewsTableViewCell: UITableViewCell {
+class NewsCollectionViewCell: UICollectionViewCell {
+
+    @IBOutlet weak var newsTitleLabel: UILabel!
+    @IBOutlet weak var newsPublishedDateLabel: UILabel!
+    @IBOutlet weak var newsImageView: UIImageView!
     
-    @IBOutlet weak var dateTitle: UILabel!
-    @IBOutlet weak var NewsTitle: UILabel!
-    @IBOutlet weak var NewsImageView: UIImageView!
-    
-    static let identifierForCell = "NewsTableViewCell"
-    var newsImage: UIImage?
-    var viewModel: NewsViewModel?
-    var row: Int?
+    static let identifierForCell = "NewsCollectionViewCell"
     let activityIndicator = UIActivityIndicatorView()
-    
+    var news: Article?
+    var newsImage: UIImage?
     override func awakeFromNib() {
         super.awakeFromNib()
-        NewsImageView.layer.cornerRadius = 5
-        activityIndicator.frame = NewsImageView.frame
-        activityIndicator.backgroundColor = .loaderWhiteBackgroundColor
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+        newsImageView.layer.cornerRadius = 5
+        // Initialization code
     }
     
     
     func updateCell(with news: Article?) {
         startLoading()
-        if self.viewModel?.dataSource?.articles[self.row ?? 0].Newsimage == nil {
+        
             if  let remoteImageURL = URL(string: news?.urlToImage ?? "") {
                 AF.request(remoteImageURL).responseData { (response) in
                     if response.error == nil {
@@ -51,7 +42,7 @@ class NewsTableViewCell: UITableViewCell {
                 
             }
             
-        }
+        
         
     }
     
@@ -65,9 +56,10 @@ class NewsTableViewCell: UITableViewCell {
         activityIndicator.removeFromSuperview()
     }
     
+
     private func internalUpdate(article: Article?) {
-        NewsImageView.image = newsImage
-        NewsTitle.text = article?.title
+        newsImageView.image = newsImage
+        newsTitleLabel.text = article?.title
         if let publishedDate = article?.publishedAt {
             updateDateAndTime(publishedAt: publishedDate)
         }
@@ -77,14 +69,7 @@ class NewsTableViewCell: UITableViewCell {
         let format = DateFormatter()
         format.timeZone = .current
         format.dateFormat = "MM-dd-yyyy HH:mm"
-        dateTitle.text = format.date(from: publishedAt)?.description
+        newsPublishedDateLabel.text = format.date(from: publishedAt)?.description
     }
     
-}
-
-
-extension UIColor {
-    class var loaderWhiteBackgroundColor: UIColor {
-        return UIColor(red: 0.0/250.0, green: 0.0/250.0, blue: 0.0/250.0, alpha: 0.2)
-    }
 }

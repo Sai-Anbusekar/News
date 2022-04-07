@@ -25,9 +25,10 @@ class NewsListViewController: NewsViewController {
         super.customiseUI()
         registerCells()
         getNewsList()
+        
     }
     
-    private func registerCells() {
+    final func registerCells() {
         tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: NewsTableViewCell.identifierForCell)
     }
     
@@ -59,7 +60,5 @@ extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
-    
     
 }
