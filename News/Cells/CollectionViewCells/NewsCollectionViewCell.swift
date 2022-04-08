@@ -20,6 +20,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     var newsImage: UIImage?
     override func awakeFromNib() {
         super.awakeFromNib()
+        activityIndicator.frame = contentView.frame
         newsImageView.layer.cornerRadius = 5
         // Initialization code
     }
