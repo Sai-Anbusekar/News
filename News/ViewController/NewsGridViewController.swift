@@ -112,9 +112,8 @@ extension NewsGridViewController: NewsCollectionViewCellDelegate, DetailNewsView
         } else {
             newsViewModelDetails?.dataSource?.articles[at.row].isLiked = true
         }
-        updateDataToListView()
         collectionView.reloadItems(at: [at])
-        
+        updateDataToListView()
     }
     
 }

@@ -26,11 +26,16 @@ class NewsListViewController: NewsViewController {
         
     }
 
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        
+    }
+    
     // MARK: - Custom methods
     override func customiseUI() {
         super.customiseUI()
-        title = "Top Highlights"
+        
         registerCells()
         getNewsList()
         

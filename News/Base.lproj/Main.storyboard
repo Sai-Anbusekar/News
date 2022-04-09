@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Grid View-->
+        <!--Top Highlights-->
         <scene sceneID="FCe-AW-n6f">
             <objects>
-                <viewController storyboardIdentifier="NewsGridViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cme-fN-X3C" customClass="NewsGridViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsGridViewController" title="Top Highlights" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cme-fN-X3C" customClass="NewsGridViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zD0-Qt-voU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,10 +49,10 @@
             </objects>
             <point key="canvasLocation" x="1165.217391304348" y="407.8125"/>
         </scene>
-        <!--List View-->
+        <!--Top Highlights-->
         <scene sceneID="xVu-at-OKS">
             <objects>
-                <viewController id="jEo-2V-hNh" customClass="NewsListViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Top Highlights" id="jEo-2V-hNh" customClass="NewsListViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6wC-lZ-PFi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
