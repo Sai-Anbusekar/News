@@ -92,15 +92,26 @@ extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if (((newsViewModelDetails.dataSource?.articles.count ?? 0) - 2) == indexPath.row) {
-//            getNewsList()
-//        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc  = storyBoard.instantiateViewController(withIdentifier: "DetailNewsViewController") as? DetailNewsViewController {
+            vc.modalPresentationStyle = .popover
+            vc.article = newsViewModelDetails.dataSource?.articles[indexPath.row]
+            vc.delegate = self
+            vc.selectedIndexPath = indexPath
+            self.navigationController?.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    //        if (((newsViewModelDetails.dataSource?.articles.count ?? 0) - 2) == indexPath.row) {
+    //            getNewsList()
+    //        }
+    //    }
     
 }
 
-extension NewsListViewController: NewsTableViewCellDelegate {
+extension NewsListViewController: NewsTableViewCellDelegate, DetailNewsViewControllerDelegate {
     
     func likeButtonTapped(at: IndexPath) {
         if let isLiked = newsViewModelDetails.dataSource?.articles[at.row].isLiked {
@@ -112,3 +123,4 @@ extension NewsListViewController: NewsTableViewCellDelegate {
     }
     
 }
+

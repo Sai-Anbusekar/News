@@ -17,7 +17,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var newsTitleLabel: UILabel!
     @IBOutlet weak var newsPublishedDateLabel: UILabel!
     @IBOutlet weak var newsImageView: UIImageView!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var likeButton: LikeButton!
     
     static let identifierForCell = "NewsCollectionViewCell"
     let activityIndicator = UIActivityIndicatorView()

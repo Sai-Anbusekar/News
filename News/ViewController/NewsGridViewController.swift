@@ -28,14 +28,17 @@ class NewsGridViewController: NewsViewController {
     }
    
     private func getNewsList() {
-        
-//        newsViewModelDetails?.fetchMovies(startDate: <#T##String#>, endDate: <#T##String#>, successBlock: <#T##(NewsList, Bool?) -> Void##(NewsList, Bool?) -> Void##(_ withResponse: NewsList, _ successStatus: Bool?) -> Void#>, failureBlock: <#T##(AFError?, Bool?) -> Void##(AFError?, Bool?) -> Void##(_ withResponse: AFError?, _ failureStatus: Bool?) -> Void#>)
-//        newsViewModelDetails?.fetchMovies(startDate: <#T##String#>, endDate: <#T##String#>, successBlock: <#T##(NewsList, Bool?) -> Void##(NewsList, Bool?) -> Void##(_ withResponse: NewsList, _ successStatus: Bool?) -> Void#>, failureBlock: <#T##(AFError?, Bool?) -> Void##(AFError?, Bool?) -> Void##(_ withResponse: AFError?, _ failureStatus: Bool?) -> Void#>, successBlock: { withResponse, successStatus in
-//            self.newsViewModelDetails.dataSource = withResponse
-//            self.collectionView.reloadData()
-//        }, failureBlock: { withResponse, failureStatus in
-//
-//        })
+        collectionView.reloadData()
+        //        newsViewModelDetails?.fetchMovies { withResponse, successStatus in
+        //            collectionView.reloadData()
+        //        } failureBlock: { withResponse, failureStatus in
+        //            
+        //        }        // newsViewModelDetails.fetchNewsBasedOn(startDate: NewsHelper.convertStringFrom(date: newsViewModelDetails.startDate), endDate: NewsHelper.convertStringFrom(date: newsViewModelDetails.endDate ?? Date()), successBlock: { withResponse, successStatus in
+        //            self.newsViewModelDetails.dataSource = withResponse
+        //            self.collectionView.reloadData()
+        //        }, failureBlock: { withResponse, failureStatus in
+        //
+        //        })
     }
     
     private func registerCells() {
@@ -75,9 +78,20 @@ extension NewsGridViewController : UICollectionViewDelegate, UICollectionViewDat
         return CGSize(width: self.collectionView.frame.width / 2 , height: self.collectionView.frame.width / 2);
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc  = storyBoard.instantiateViewController(withIdentifier: "DetailNewsViewController") as? DetailNewsViewController {
+            vc.modalPresentationStyle = .popover
+            vc.article = newsViewModelDetails?.dataSource?.articles[indexPath.row]
+            vc.delegate = self
+            vc.selectedIndexPath = indexPath
+            self.navigationController?.present(vc, animated: true, completion: nil)
+        }
+    }
+    
 }
 
-extension NewsGridViewController: NewsCollectionViewCellDelegate {
+extension NewsGridViewController: NewsCollectionViewCellDelegate, DetailNewsViewControllerDelegate {
     
     func likeButtonTapped(at: IndexPath) {
         if let isLiked = newsViewModelDetails?.dataSource?.articles[at.row].isLiked {

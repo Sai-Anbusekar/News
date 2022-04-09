@@ -23,7 +23,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8MT-tC-f91">
                                 <rect key="frame" x="10" y="10" width="359" height="261"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="og5-82-UCp">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="og5-82-UCp" customClass="LikeButton" customModule="News" customModuleProvider="target">
                                 <rect key="frame" x="298" y="10" width="71" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="GYa-0I-4WE"/>
@@ -33,9 +33,6 @@
                                 <buttonConfiguration key="configuration" style="filled" image="heart" catalog="system" title="Like">
                                     <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="likeButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="6tY-ee-iAs"/>
-                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fM4-IR-xqd">
                                 <rect key="frame" x="10" y="207" width="359" height="64"/>
@@ -89,7 +86,7 @@
             </constraints>
             <size key="customSize" width="379" height="281"/>
             <connections>
-                <outlet property="likeButton" destination="og5-82-UCp" id="a9Q-GD-A0B"/>
+                <outlet property="likeButton" destination="og5-82-UCp" id="3Lq-P4-M4a"/>
                 <outlet property="newsImageView" destination="8MT-tC-f91" id="6y8-Fg-Spb"/>
                 <outlet property="newsPublishedDateLabel" destination="oqa-i5-oqH" id="RTC-lg-YO1"/>
                 <outlet property="newsTitleLabel" destination="UH3-EL-RJK" id="Azl-CC-uQb"/>
