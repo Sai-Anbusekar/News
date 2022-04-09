@@ -27,13 +27,17 @@ class NewsGridViewController: NewsViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getNewsList()
+    }
+    
     // MARK: - Custom Methods
     
     override func customiseUI() {
         super.customiseUI()
+        title = "Top Highlights"
         registerCells()
-        getNewsList()
     }
    
     private func getNewsList() {

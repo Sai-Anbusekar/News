@@ -30,6 +30,7 @@ class NewsListViewController: NewsViewController {
     // MARK: - Custom methods
     override func customiseUI() {
         super.customiseUI()
+        title = "Top Highlights"
         registerCells()
         getNewsList()
         
@@ -65,8 +66,6 @@ class NewsListViewController: NewsViewController {
         } failureBlock: { withResponse, failureStatus in
             
         }
-
-        
         
     }
     
