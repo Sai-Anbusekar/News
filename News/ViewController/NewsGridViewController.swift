@@ -41,6 +41,13 @@ class NewsGridViewController: NewsViewController {
     private func registerCells() {
         collectionView.register(UINib(nibName: "NewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: NewsCollectionViewCell.identifierForCell)
     }
+    
+    private func updateDataToListView() {
+        let newsListVc = self.tabBarController?.viewControllers?[0] as? NewsListViewController
+        if let data = newsViewModelDetails {
+            newsListVc?.newsViewModelDetails = data
+        }
+    }
 
 }
 
@@ -54,6 +61,8 @@ extension NewsGridViewController : UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell: NewsCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewsCollectionViewCell", for: indexPath) as? NewsCollectionViewCell {
             cell.updateCell(with: newsViewModelDetails?.dataSource?.articles[indexPath.row] )
+            cell.delegate = self
+            cell.currentIndexPath = indexPath
             return cell
         }
         return UICollectionViewCell()
@@ -64,6 +73,21 @@ extension NewsGridViewController : UICollectionViewDelegate, UICollectionViewDat
         
 
         return CGSize(width: self.collectionView.frame.width / 2 , height: self.collectionView.frame.width / 2);
+    }
+    
+}
+
+extension NewsGridViewController: NewsCollectionViewCellDelegate {
+    
+    func likeButtonTapped(at: IndexPath) {
+        if let isLiked = newsViewModelDetails?.dataSource?.articles[at.row].isLiked {
+            newsViewModelDetails?.dataSource?.articles[at.row].isLiked = !isLiked
+        } else {
+            newsViewModelDetails?.dataSource?.articles[at.row].isLiked = true
+        }
+        updateDataToListView()
+        collectionView.reloadItems(at: [at])
+        
     }
     
 }

@@ -84,7 +84,7 @@ extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
         if let cell: NewsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as? NewsTableViewCell {
             cell.updateCell(with: self.newsViewModelDetails.dataSource?.articles[indexPath.row])
             cell.viewModel = newsViewModelDetails
-            cell.row = indexPath.row
+            cell.currentIndexPath = indexPath
             cell.delegate = self
             return cell
             
@@ -102,13 +102,13 @@ extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension NewsListViewController: NewsTableViewCellDelegate {
     
-    func likeButtonTapped(at: Int) {
-        if let isLiked = newsViewModelDetails.dataSource?.articles[at].isLiked {
-            newsViewModelDetails.dataSource?.articles[at].isLiked = !isLiked
+    func likeButtonTapped(at: IndexPath) {
+        if let isLiked = newsViewModelDetails.dataSource?.articles[at.row].isLiked {
+            newsViewModelDetails.dataSource?.articles[at.row].isLiked = !isLiked
         } else {
-            newsViewModelDetails.dataSource?.articles[at].isLiked = true
+            newsViewModelDetails.dataSource?.articles[at.row].isLiked = true
         }
-        tableView.reloadRows(at: [IndexPath(row: at, section: 0)], with: .none)
+        tableView.reloadRows(at: [at], with: .none)
     }
     
 }

@@ -23,6 +23,20 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8MT-tC-f91">
                                 <rect key="frame" x="10" y="10" width="359" height="261"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="og5-82-UCp">
+                                <rect key="frame" x="298" y="10" width="71" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="GYa-0I-4WE"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="tintColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="heart" catalog="system" title="Like">
+                                    <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="likeButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="6tY-ee-iAs"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fM4-IR-xqd">
                                 <rect key="frame" x="10" y="207" width="359" height="64"/>
                                 <subviews>
@@ -54,8 +68,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="8MT-tC-f91" firstAttribute="top" secondItem="89G-Am-N2u" secondAttribute="top" constant="10" id="IgG-8F-WKa"/>
+                            <constraint firstItem="og5-82-UCp" firstAttribute="top" secondItem="8MT-tC-f91" secondAttribute="top" id="O8E-Tv-Eg0"/>
                             <constraint firstAttribute="bottom" secondItem="8MT-tC-f91" secondAttribute="bottom" constant="10" id="Tol-pP-59c"/>
                             <constraint firstItem="fM4-IR-xqd" firstAttribute="leading" secondItem="8MT-tC-f91" secondAttribute="leading" id="jFc-nd-T9u"/>
+                            <constraint firstItem="og5-82-UCp" firstAttribute="trailing" secondItem="8MT-tC-f91" secondAttribute="trailing" id="lW4-p1-Zf5"/>
                             <constraint firstItem="8MT-tC-f91" firstAttribute="leading" secondItem="89G-Am-N2u" secondAttribute="leading" constant="10" id="mrb-ae-zz6"/>
                             <constraint firstItem="fM4-IR-xqd" firstAttribute="bottom" secondItem="8MT-tC-f91" secondAttribute="bottom" id="pzv-H9-mdW"/>
                             <constraint firstAttribute="trailing" secondItem="8MT-tC-f91" secondAttribute="trailing" constant="10" id="qqy-DZ-fA6"/>
@@ -73,6 +89,7 @@
             </constraints>
             <size key="customSize" width="379" height="281"/>
             <connections>
+                <outlet property="likeButton" destination="og5-82-UCp" id="a9Q-GD-A0B"/>
                 <outlet property="newsImageView" destination="8MT-tC-f91" id="6y8-Fg-Spb"/>
                 <outlet property="newsPublishedDateLabel" destination="oqa-i5-oqH" id="RTC-lg-YO1"/>
                 <outlet property="newsTitleLabel" destination="UH3-EL-RJK" id="Azl-CC-uQb"/>
@@ -81,8 +98,12 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

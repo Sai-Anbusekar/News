@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 
 protocol NewsTableViewCellDelegate {
-    func likeButtonTapped(at: Int)
+    func likeButtonTapped(at: IndexPath)
 }
 
 class NewsTableViewCell: UITableViewCell {
@@ -24,7 +24,7 @@ class NewsTableViewCell: UITableViewCell {
     var delegate: NewsTableViewCellDelegate?
     var newsImage: UIImage?
     var viewModel: NewsViewModel?
-    var row: Int?
+    var currentIndexPath: IndexPath?
     let activityIndicator = UIActivityIndicatorView()
     
     override func awakeFromNib() {
@@ -42,12 +42,14 @@ class NewsTableViewCell: UITableViewCell {
     
     
     @IBAction func likeButtonTapped(_ sender: Any) {
-        delegate?.likeButtonTapped(at: row ?? 0)
+        if let indexPath = currentIndexPath {
+            delegate?.likeButtonTapped(at: indexPath)
+        }
     }
     
     func updateCell(with news: Article?) {
         startLoading()
-        if self.viewModel?.dataSource?.articles[self.row ?? 0].Newsimage == nil {
+     
             if  let remoteImageURL = URL(string: news?.urlToImage ?? "") {
                 AF.request(remoteImageURL).responseData { (response) in
                     if response.error == nil {
@@ -62,7 +64,7 @@ class NewsTableViewCell: UITableViewCell {
                 
             }
             
-        }
+        
         
     }
     

@@ -8,22 +8,36 @@
 import UIKit
 import Alamofire
 
+protocol NewsCollectionViewCellDelegate {
+    func likeButtonTapped(at: IndexPath)
+}
+
 class NewsCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var newsTitleLabel: UILabel!
     @IBOutlet weak var newsPublishedDateLabel: UILabel!
     @IBOutlet weak var newsImageView: UIImageView!
+    @IBOutlet weak var likeButton: UIButton!
     
     static let identifierForCell = "NewsCollectionViewCell"
     let activityIndicator = UIActivityIndicatorView()
     var news: Article?
     var newsImage: UIImage?
+    var currentIndexPath: IndexPath?
+    var delegate: NewsCollectionViewCellDelegate?
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         activityIndicator.frame = contentView.frame
         newsImageView.layer.cornerRadius = 5
     }
     
+    @IBAction func likeButtonTapped(_ sender: Any) {
+        if let data = currentIndexPath {
+            delegate?.likeButtonTapped(at: data)
+        }
+    }
     
     func updateCell(with news: Article?) {
         startLoading()
@@ -61,6 +75,14 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsImageView.image = newsImage
         newsTitleLabel.text = article?.title
         newsPublishedDateLabel.text = NewsHelper.convertToUTC(dateToConvert: article?.publishedAt ?? "")
+        if article?.isLiked == true {
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            likeButton.setTitle("Liked", for: .normal)
+        } else {
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            likeButton.setTitle("Like", for: .normal)
+            
+        }
     }
     
 }
