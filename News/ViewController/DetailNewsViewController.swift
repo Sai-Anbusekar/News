@@ -14,6 +14,9 @@ protocol DetailNewsViewControllerDelegate {
 
 class DetailNewsViewController: NewsViewController {
     
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var newsImage: UIImageView!
     @IBOutlet weak var newsTitle: UILabel!
     @IBOutlet weak var publishedAtLabel: UILabel!
@@ -21,17 +24,23 @@ class DetailNewsViewController: NewsViewController {
     @IBOutlet weak var likeButton: LikeButton!
     
     
+    // MARK: - Variable
+    
     var article: Article?
     var delegate: DetailNewsViewControllerDelegate?
     var selectedIndexPath: IndexPath?
     
     
+    // MARK: - View Life Cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
     }
+    
+    
+    // MARK: - Custom Mehtods
     
     @IBAction func likeButtonTapped(_ sender: Any) {
         if article?.isLiked == true {

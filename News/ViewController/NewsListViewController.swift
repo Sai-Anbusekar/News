@@ -9,10 +9,16 @@ import UIKit
 
 class NewsListViewController: NewsViewController {
     
+    // MARK: - Outlets
     
     @IBOutlet weak var tableView: UITableView!
     
+    
+    // MARK: - Variables
     var newsViewModelDetails: NewsViewModel = NewsViewModel(News: NewsListModel())
+    
+    
+    // MARK: - View Life Cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +27,7 @@ class NewsListViewController: NewsViewController {
     }
 
 
+    // MARK: - Custom methods
     override func customiseUI() {
         super.customiseUI()
         registerCells()
@@ -35,6 +42,7 @@ class NewsListViewController: NewsViewController {
     
     private func getNewsList() {
         
+        //FIXME: below code another type of timeline based fetch news which has pagination condept 
        /* newsViewModelDetails.fetchNewsBasedOn(startDate: NewsHelper.convertStringFrom(date: newsViewModelDetails.startDate), endDate: NewsHelper.convertStringFrom(date: newsViewModelDetails.endDate ?? Date()), successBlock: { withResponse, successStatus in
             if self.newsViewModelDetails.dataSource == nil {
                 self.newsViewModelDetails.dataSource = withResponse

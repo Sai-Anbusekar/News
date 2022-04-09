@@ -9,10 +9,17 @@ import UIKit
 
 class NewsGridViewController: NewsViewController {
 
-    var newsViewModelDetails: NewsViewModel?
-
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    // MARK: - Variables
+    
+    var newsViewModelDetails: NewsViewModel?
+    
+    // MARK: - View Life Cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +28,8 @@ class NewsGridViewController: NewsViewController {
     }
     
 
+    // MARK: - Custom Methods
+    
     override func customiseUI() {
         super.customiseUI()
         registerCells()
