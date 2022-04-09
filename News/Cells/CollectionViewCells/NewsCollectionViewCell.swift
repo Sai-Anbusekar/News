@@ -76,11 +76,9 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsTitleLabel.text = article?.title
         newsPublishedDateLabel.text = NewsHelper.convertToUTC(dateToConvert: article?.publishedAt ?? "")
         if article?.isLiked == true {
-            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            likeButton.setTitle("Liked", for: .normal)
+            likeButton.liked()
         } else {
-            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            likeButton.setTitle("Like", for: .normal)
+            likeButton.unLiked()
             
         }
     }

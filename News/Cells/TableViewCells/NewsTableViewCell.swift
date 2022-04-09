@@ -16,7 +16,7 @@ class NewsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dateTitle: UILabel!
     @IBOutlet weak var NewsTitle: UILabel!
-    @IBOutlet weak var LikeButton: UIButton!
+    @IBOutlet weak var likeButton: LikeButton!
     @IBOutlet weak var NewsImageView: UIImageView!
     
     static let identifierForCell = "NewsTableViewCell"
@@ -83,11 +83,9 @@ class NewsTableViewCell: UITableViewCell {
         NewsTitle.text = article?.title
         dateTitle.text = NewsHelper.convertToUTC(dateToConvert: article?.publishedAt ?? "")
         if article?.isLiked == true {
-            LikeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            LikeButton.setTitle("Liked", for: .normal)
+            likeButton.liked()
         } else {
-            LikeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            LikeButton.setTitle("Like", for: .normal)
+            likeButton.unLiked()
             
         }
         
