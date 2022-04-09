@@ -10,7 +10,7 @@ import Alamofire
 
 
 // Api keys
-let apiKey = "43996ec534d848288d024dcf87a388d2"
+let apiKey = "cd4dc5ee32044e438a7d79d26d49a82b"
 
 
 // base URL

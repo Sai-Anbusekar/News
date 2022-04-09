@@ -8,13 +8,20 @@
 import UIKit
 import Alamofire
 
+protocol NewsTableViewCellDelegate {
+    func likeButtonTapped(at: Int)
+}
+
 class NewsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dateTitle: UILabel!
     @IBOutlet weak var NewsTitle: UILabel!
+    @IBOutlet weak var LikeButton: UIButton!
     @IBOutlet weak var NewsImageView: UIImageView!
     
     static let identifierForCell = "NewsTableViewCell"
+    
+    var delegate: NewsTableViewCellDelegate?
     var newsImage: UIImage?
     var viewModel: NewsViewModel?
     var row: Int?
@@ -33,6 +40,10 @@ class NewsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    @IBAction func likeButtonTapped(_ sender: Any) {
+        delegate?.likeButtonTapped(at: row ?? 0)
+    }
     
     func updateCell(with news: Article?) {
         startLoading()
@@ -68,16 +79,16 @@ class NewsTableViewCell: UITableViewCell {
     private func internalUpdate(article: Article?) {
         NewsImageView.image = newsImage
         NewsTitle.text = article?.title
-        if let publishedDate = article?.publishedAt {
-            updateDateAndTime(publishedAt: publishedDate)
+        dateTitle.text = NewsHelper.convertToUTC(dateToConvert: article?.publishedAt ?? "")
+        if article?.isLiked == true {
+            LikeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            LikeButton.setTitle("Liked", for: .normal)
+        } else {
+            LikeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            LikeButton.setTitle("Like", for: .normal)
+            
         }
-    }
-    
-    private func updateDateAndTime(publishedAt : String) {
-        let format = DateFormatter()
-        format.timeZone = .current
-        format.dateFormat = "MM-dd-yyyy HH:mm"
-        dateTitle.text = format.date(from: publishedAt)?.description
+        
     }
     
 }

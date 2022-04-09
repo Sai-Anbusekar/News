@@ -23,31 +23,43 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8MT-tC-f91">
                                 <rect key="frame" x="10" y="10" width="359" height="261"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH3-EL-RJK">
-                                <rect key="frame" x="10" y="217" width="359" height="23"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqa-i5-oqH">
-                                <rect key="frame" x="10" y="250" width="359" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fM4-IR-xqd">
+                                <rect key="frame" x="10" y="207" width="359" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH3-EL-RJK">
+                                        <rect key="frame" x="5" y="5" width="349" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oqa-i5-oqH">
+                                        <rect key="frame" x="5" y="38" width="349" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="oqa-i5-oqH" secondAttribute="trailing" constant="5" id="1cs-Zd-Ds4"/>
+                                    <constraint firstAttribute="trailing" secondItem="UH3-EL-RJK" secondAttribute="trailing" constant="5" id="Ft9-RK-rQf"/>
+                                    <constraint firstItem="oqa-i5-oqH" firstAttribute="top" secondItem="UH3-EL-RJK" secondAttribute="bottom" constant="10" id="RCP-SX-Acr"/>
+                                    <constraint firstItem="UH3-EL-RJK" firstAttribute="leading" secondItem="fM4-IR-xqd" secondAttribute="leading" constant="5" id="TqJ-6u-sjR"/>
+                                    <constraint firstItem="oqa-i5-oqH" firstAttribute="leading" secondItem="fM4-IR-xqd" secondAttribute="leading" constant="5" id="U8M-Kv-qR4"/>
+                                    <constraint firstAttribute="bottom" secondItem="oqa-i5-oqH" secondAttribute="bottom" constant="5" id="nQ3-K0-B8G"/>
+                                    <constraint firstItem="UH3-EL-RJK" firstAttribute="top" secondItem="fM4-IR-xqd" secondAttribute="top" constant="5" id="zLE-nv-lov"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="oqa-i5-oqH" firstAttribute="trailing" secondItem="8MT-tC-f91" secondAttribute="trailing" id="1Jk-1O-giD"/>
                             <constraint firstItem="8MT-tC-f91" firstAttribute="top" secondItem="89G-Am-N2u" secondAttribute="top" constant="10" id="IgG-8F-WKa"/>
                             <constraint firstAttribute="bottom" secondItem="8MT-tC-f91" secondAttribute="bottom" constant="10" id="Tol-pP-59c"/>
-                            <constraint firstItem="UH3-EL-RJK" firstAttribute="leading" secondItem="8MT-tC-f91" secondAttribute="leading" id="WZK-hw-Dxk"/>
-                            <constraint firstItem="oqa-i5-oqH" firstAttribute="bottom" secondItem="8MT-tC-f91" secondAttribute="bottom" id="j4d-dg-zIK"/>
-                            <constraint firstItem="oqa-i5-oqH" firstAttribute="top" secondItem="UH3-EL-RJK" secondAttribute="bottom" constant="10" id="mcH-yc-6rg"/>
+                            <constraint firstItem="fM4-IR-xqd" firstAttribute="leading" secondItem="8MT-tC-f91" secondAttribute="leading" id="jFc-nd-T9u"/>
                             <constraint firstItem="8MT-tC-f91" firstAttribute="leading" secondItem="89G-Am-N2u" secondAttribute="leading" constant="10" id="mrb-ae-zz6"/>
+                            <constraint firstItem="fM4-IR-xqd" firstAttribute="bottom" secondItem="8MT-tC-f91" secondAttribute="bottom" id="pzv-H9-mdW"/>
                             <constraint firstAttribute="trailing" secondItem="8MT-tC-f91" secondAttribute="trailing" constant="10" id="qqy-DZ-fA6"/>
-                            <constraint firstItem="UH3-EL-RJK" firstAttribute="trailing" secondItem="8MT-tC-f91" secondAttribute="trailing" id="rLz-U0-sJO"/>
-                            <constraint firstItem="oqa-i5-oqH" firstAttribute="leading" secondItem="8MT-tC-f91" secondAttribute="leading" id="soz-mC-7hK"/>
+                            <constraint firstItem="fM4-IR-xqd" firstAttribute="trailing" secondItem="8MT-tC-f91" secondAttribute="trailing" id="vo9-XX-PqY"/>
                         </constraints>
                     </view>
                 </subviews>

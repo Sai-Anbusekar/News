@@ -60,16 +60,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     private func internalUpdate(article: Article?) {
         newsImageView.image = newsImage
         newsTitleLabel.text = article?.title
-        if let publishedDate = article?.publishedAt {
-            updateDateAndTime(publishedAt: publishedDate)
-        }
-    }
-    
-    private func updateDateAndTime(publishedAt : String) {
-        let format = DateFormatter()
-        format.timeZone = .current
-        format.dateFormat = "MM-dd-yyyy'T'HH:mm"
-        newsPublishedDateLabel.text = publishedAt
+        newsPublishedDateLabel.text = NewsHelper.convertToUTC(dateToConvert: article?.publishedAt ?? "")
     }
     
 }

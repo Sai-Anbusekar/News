@@ -22,12 +22,20 @@ class NewsViewModel {
         
     }
     
-    init(Movies: NewsListModel) {
+    init(News: NewsListModel) {
         self.model = NewsListModel()
     }
     
-    func fetchMovies(startDate: String, endDate: String, successBlock: @escaping NewsModelProtocol.NewsListSuccessBlock, failureBlock: @escaping NewsModelProtocol.NewsListFailureBlock) {
-        model.FetchNewsList(startDate: startDate, endDate: endDate) { newsList, status in
+    func fetchNewsBasedOn(startDate: String, endDate: String, successBlock: @escaping NewsModelProtocol.NewsListSuccessBlock, failureBlock: @escaping NewsModelProtocol.NewsListFailureBlock) {
+        model.FetchNewsListBasedOn(startDate: startDate, endDate: endDate) { newsList, status in
+            successBlock(newsList, status)
+        } failureBlock: { withResponse, failureStatus in
+            failureBlock(withResponse, failureStatus)
+        }
+    }
+    
+    func fetchMovies(successBlock: @escaping NewsModelProtocol.NewsListSuccessBlock, failureBlock: @escaping NewsModelProtocol.NewsListFailureBlock) {
+        model.FetchNewsList { newsList, status in
             successBlock(newsList, status)
         } failureBlock: { withResponse, failureStatus in
             failureBlock(withResponse, failureStatus)
