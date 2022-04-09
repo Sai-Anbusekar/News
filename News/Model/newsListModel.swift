@@ -12,7 +12,7 @@ import Alamofire
 // MARK: - Article List
 struct NewsList: Codable {
     let status: String
-    let totalResults: Int
+    var totalResults: Int
     var articles: [Article]
 }
 
@@ -48,16 +48,16 @@ protocol NewsModelProtocol {
     typealias NewsListFailureBlock = (_ withResponse: AFError?, _ failureStatus: Bool?) -> Void
     typealias NewsListSuccessBlock = (_ withResponse: NewsList, _ successStatus: Bool?) -> Void
     
-    func FetchNewsList(page:Int, successBlock: @escaping NewsModelProtocol.NewsListSuccessBlock, failureBlock: @escaping NewsListFailureBlock)
+    func FetchNewsList(startDate:String, endDate: String, successBlock: @escaping NewsModelProtocol.NewsListSuccessBlock, failureBlock: @escaping NewsListFailureBlock)
     
 }
 
 
 class NewsListModel: NSObject, NewsModelProtocol  {
     
-    func FetchNewsList(page: Int, successBlock: @escaping (NewsList, Bool?) -> Void, failureBlock: @escaping NewsListFailureBlock) {
+    func FetchNewsList(startDate:String, endDate: String, successBlock: @escaping (NewsList, Bool?) -> Void, failureBlock: @escaping NewsListFailureBlock) {
         
-        if let requestUrl = URL(string: "\(baseUrl)top-headlines?country=us&apiKey=\(apiKey)") {
+        if let requestUrl = URL(string: "\(baseUrl)everything?q=apple&from=\(startDate)&to=\(endDate)&sortBy=popularity&apiKey=\(apiKey)") {
             _ = NewsAlamofire.getRequest(url: requestUrl, parameters: nil, successBlock: { withResponse, status in
                 if let response = withResponse?.data {
                     do {

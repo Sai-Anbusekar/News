@@ -22,7 +22,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         activityIndicator.frame = contentView.frame
         newsImageView.layer.cornerRadius = 5
-        // Initialization code
     }
     
     
@@ -69,8 +68,8 @@ class NewsCollectionViewCell: UICollectionViewCell {
     private func updateDateAndTime(publishedAt : String) {
         let format = DateFormatter()
         format.timeZone = .current
-        format.dateFormat = "MM-dd-yyyy HH:mm"
-        newsPublishedDateLabel.text = format.date(from: publishedAt)?.description
+        format.dateFormat = "MM-dd-yyyy'T'HH:mm"
+        newsPublishedDateLabel.text = publishedAt
     }
     
 }
